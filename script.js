@@ -1,5 +1,6 @@
 const minhaBiblioteca = [];
 
+//construtor objecto Livro
 function Livro(título, autor, páginas, estado) {
     this.título = título;
     this.autor = autor;
@@ -8,8 +9,7 @@ function Livro(título, autor, páginas, estado) {
     this.id = crypto.randomUUID();
 }
 
-// const theHobbit = new Livro("The Hobbit", "J.R.R. Tolkien", 293, "lido");
-
+//fx para adicionar o Livro à Biblioteca
 function adicionarLivroBiblioteca(título, autor, páginas, estado) {
     let livro = new Livro(título, autor, páginas, estado);
     minhaBiblioteca.push(livro);
@@ -18,33 +18,41 @@ function adicionarLivroBiblioteca(título, autor, páginas, estado) {
 adicionarLivroBiblioteca("The Hobbit", "J.R.R. Tolkien", 293, "lido");
 adicionarLivroBiblioteca("Livro1", "Autor1", 250, "não lido");
 adicionarLivroBiblioteca("Livro2", "Autor2, Autor3", 200, "lido");
-console.table()
 
-let títuloElemento = document.querySelector(".js-título");
-let autorElemento = document.querySelector(".js-autor");
-let páginasElemento = document.querySelector(".js-páginas");
-let estadoElemento = document.querySelector(".js-estado");
-let testeElemento = document.querySelector(".teste");
+
 const blocoCartõesElemento = document.querySelector(".bloco-cartões");
-const cartãoLivroElemento = document.querySelector(".cartão-livro");
+
 let títuloTexto;
 let autorTexto;
 let páginasTexto;
 let estadoTexto;
 
-
-
-
-for (i = 0; i < minhaBiblioteca.length; i++) {
-    títuloTexto = minhaBiblioteca[i].título;
-    autorTexto = minhaBiblioteca[i].autor;
-    páginasTexto = minhaBiblioteca[i].páginas;
-    estadoTexto = minhaBiblioteca[i].estado;
+//loop que constrói o HTML dos Livros
+//nota: o for...of não funciona, apenas o for...in com o item como index
+for (const item in minhaBiblioteca) {
+    títuloTexto = minhaBiblioteca[item].título;
+    autorTexto = minhaBiblioteca[item].autor;
+    páginasTexto = minhaBiblioteca[item].páginas;
+    estadoTexto = minhaBiblioteca[item].estado;
+    idTexto = minhaBiblioteca[item].id;
     let cartãoLivro = document.createElement("div");
     cartãoLivro.classList.add("cartão-livro");
     blocoCartõesElemento.appendChild(cartãoLivro);
-    let livroTexto = document.createElement("div");
-    livroTexto.classList.add("teste");
-    livroTexto.innerHTML = `Título: ${títuloTexto}<br>Autor: ${autorTexto}<br>Páginas: ${páginasTexto}<br>Estado: ${estadoTexto}`;
-    cartãoLivro.appendChild(livroTexto);
+    let títuloConteúdo = document.createElement("div");
+    let autorConteúdo = document.createElement("div");
+    let páginasConteúdo = document.createElement("div");
+    let estadoConteúdo = document.createElement("div");
+    títuloConteúdo.classList.add("js-título");
+    autorConteúdo.classList.add("js-autor");
+    páginasConteúdo.classList.add("js-páginas");
+    estadoConteúdo.classList.add("js-estado");
+    títuloConteúdo.textContent = títuloTexto;
+    autorConteúdo.textContent = autorTexto;
+    páginasConteúdo.textContent = `${páginasTexto} pp.`;
+    estadoConteúdo.textContent = estadoTexto;
+    cartãoLivro.appendChild(títuloConteúdo);
+    cartãoLivro.appendChild(autorConteúdo);
+    cartãoLivro.appendChild(páginasConteúdo);
+    cartãoLivro.appendChild(estadoConteúdo);
+    cartãoLivro.setAttribute("data-id", `${idTexto}`);
 }
