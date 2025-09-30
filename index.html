@@ -19,10 +19,41 @@
         <div class="bloco-cartões">
         </div>
         <div class="adicionar-livro">
-            <button type="submit" class="botao-adicionar">Adicionar Livro</button>
+            <dialog>
+                <form action="dialog" class="formulario-adicionar-livro">
+                    <div class="formulario-input">
+                        <label for="título">Título</label>
+                        <input type="text" name="título" id="título-livro">
+                    </div>
+                    <div class="formulario-input">
+                        <label for="autor">Autor</label>
+                        <input type="text" name="autor" id="autor-livro">
+                    </div>
+                    <div class="formulario-input">
+                        <label for="páginas">Páginas</label>
+                        <input type="tel" name="páginas" id="páginas-livro">
+                    </div>
+                    <fieldset>
+                        <legend>Estado leitura</legend>
+                        <div class="formulario-input">
+                            <input type="radio" name="estado" id="lido" value="lido" checked>
+                            <label for="estado">Lido</label>
+                        </div>
+                        <div class="formulario-input">
+                            <input type="radio" name="estado" id="não-lido" value="não lido">
+                            <label for="estado">Não lido</label>
+                        </div>
+                    </fieldset>
+                    <div>
+                        <button type="submit" class="botao-adicionar">Guardar</button>
+                    </div>
+                </form>
+                <button class="botao-modal-fechar">Fechar</button>
+            </dialog>
+            <button class="botao-abrir-modal">Adicionar Livro</button>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 

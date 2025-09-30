@@ -9,7 +9,7 @@ body {
 }
 
 .contentor {
-    display:grid;
+    display: grid;
     justify-content: center;
     gap: 10px;
 }
@@ -28,7 +28,7 @@ body {
     padding: 20px;
     border: 1px solid blue;
     border-radius: 8px;
-    justify-content: space-evenly;  
+    justify-content: space-evenly;
 }
 
 .cartão-livro {
@@ -49,7 +49,7 @@ body {
     text-align: center;
 }
 
-.js-botão-apagar {
+.js-botão-apagar, .botao-modal-fechar {
     border: none;
     padding: 5px;
     background-color: red;
@@ -57,12 +57,12 @@ body {
     border-radius: 5px;
 }
 
-.js-botão-apagar:hover {
+.js-botão-apagar:hover, .botao-modal-fechar:hover {
     cursor: pointer;
     background-color: darkred;
 }
 
-.botao-adicionar {
+.botao-abrir-modal, .botao-adicionar {
     border: none;
     padding: 5px;
     background-color: darkblue;
@@ -70,7 +70,24 @@ body {
     border-radius: 5px;
 }
 
-.botao-adicionar:hover {
+.botao-abrir-modal:hover {
     cursor: pointer;
     background-color: blue;
 }
+
+.formulario-adicionar-livro {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    width: 500px;
+}
+
+.botao-modal-fechar {
+    margin-bottom: 10px;
+}
+
+fieldset {
+    padding: 10px;
+}
+
