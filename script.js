@@ -26,6 +26,7 @@ let títuloTexto;
 let autorTexto;
 let páginasTexto;
 let estadoTexto;
+let apagarTexto = "Remover";
 
 //loop que constrói o HTML dos Livros
 //nota: o for...of não funciona, apenas o for...in com o item como index
@@ -36,6 +37,7 @@ for (const item in minhaBiblioteca) {
     estadoTexto = minhaBiblioteca[item].estado;
     idTexto = minhaBiblioteca[item].id;
     let cartãoLivro = document.createElement("div");
+    let botãoApagarElemento = document.createElement("button");
     cartãoLivro.classList.add("cartão-livro");
     blocoCartõesElemento.appendChild(cartãoLivro);
     let títuloConteúdo = document.createElement("div");
@@ -46,6 +48,8 @@ for (const item in minhaBiblioteca) {
     autorConteúdo.classList.add("js-autor");
     páginasConteúdo.classList.add("js-páginas");
     estadoConteúdo.classList.add("js-estado");
+    botãoApagarElemento.classList.add("js-botão-apagar");
+    botãoApagarElemento.textContent = apagarTexto;
     títuloConteúdo.textContent = títuloTexto;
     autorConteúdo.textContent = autorTexto;
     páginasConteúdo.textContent = `${páginasTexto} pp.`;
@@ -54,5 +58,6 @@ for (const item in minhaBiblioteca) {
     cartãoLivro.appendChild(autorConteúdo);
     cartãoLivro.appendChild(páginasConteúdo);
     cartãoLivro.appendChild(estadoConteúdo);
+    cartãoLivro.appendChild(botãoApagarElemento);
     cartãoLivro.setAttribute("data-id", `${idTexto}`);
 }

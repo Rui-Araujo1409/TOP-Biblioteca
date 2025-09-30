@@ -11,6 +11,7 @@ body {
 .contentor {
     display:grid;
     justify-content: center;
+    gap: 10px;
 }
 
 .apresentacao {
@@ -23,21 +24,53 @@ body {
 .bloco-cartões {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 20px;
     padding: 20px;
     border: 1px solid blue;
+    border-radius: 8px;
     justify-content: space-evenly;  
 }
 
 .cartão-livro {
     border: 1px solid red;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .js-título {
     font-weight: bold;
+}
+
+.adicionar-livro {
+    text-align: center;
+}
+
+.js-botão-apagar {
+    border: none;
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+.js-botão-apagar:hover {
+    cursor: pointer;
+    background-color: darkred;
+}
+
+.botao-adicionar {
+    border: none;
+    padding: 5px;
+    background-color: darkblue;
+    color: white;
+    border-radius: 5px;
+}
+
+.botao-adicionar:hover {
+    cursor: pointer;
+    background-color: blue;
 }
