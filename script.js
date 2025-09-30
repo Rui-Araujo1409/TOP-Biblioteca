@@ -93,17 +93,23 @@ botãoGuardarLivro.addEventListener("click", (e) => {
     adicionarLivroBiblioteca(título, autor, páginas, estado);
     formulário.close();
     //se houver elementos de livros, executar fx que limpa os elementos
+   // limparElementos();
     visualizaçãoBilbioteca(biblioteca);
     títuloFormulário.value = "";
     autorFormulário.value = "";
     páginasFormulário.value = "";
 })
 
+const teste = document.querySelector(".teste");
+
+teste.addEventListener("click", () => {
+    limparElementos();
+})
 
 //criar fx que limpa os elementos de visualização dos livros
 
 const limparElementos = () => {
-    while(blocoCartõesElemento.firstChild) {
+    while (blocoCartõesElemento.firstChild) {
         blocoCartõesElemento.removeChild(blocoCartõesElemento.firstChild);
     }
 }
