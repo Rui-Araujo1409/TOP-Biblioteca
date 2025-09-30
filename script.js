@@ -17,11 +17,12 @@ function adicionarLivroBiblioteca(título, autor, páginas, estado) {
 
 
 const blocoCartõesElemento = document.querySelector(".bloco-cartões");
+const cartãoLivro = document.createElement("div");
 
-let títuloTexto;
-let autorTexto;
-let páginasTexto;
-let estadoTexto;
+let títuloTexto = "";
+let autorTexto = "";
+let páginasTexto = "";
+let estadoTexto = "";
 let apagarTexto = "Remover";
 
 //loop que constrói o HTML dos Livros
@@ -33,7 +34,6 @@ const visualizaçãoBilbioteca = (lista) => {
         páginasTexto = lista[item].páginas;
         estadoTexto = lista[item].estado;
         idTexto = lista[item].id;
-        let cartãoLivro = document.createElement("div");
         let botãoApagarElemento = document.createElement("button");
         cartãoLivro.classList.add("cartão-livro");
         blocoCartõesElemento.appendChild(cartãoLivro);
@@ -92,8 +92,18 @@ botãoGuardarLivro.addEventListener("click", (e) => {
     estadoLidoFormulário.checked ? estado = estadoLidoFormulário.value : estado = estadoNãoLidoFormulário.value;
     adicionarLivroBiblioteca(título, autor, páginas, estado);
     formulário.close();
+    //se houver elementos de livros, executar fx que limpa os elementos
     visualizaçãoBilbioteca(biblioteca);
     títuloFormulário.value = "";
     autorFormulário.value = "";
     páginasFormulário.value = "";
 })
+
+
+//criar fx que limpa os elementos de visualização dos livros
+
+const limparElementos = () => {
+    while(blocoCartõesElemento.firstChild) {
+        blocoCartõesElemento.removeChild(blocoCartõesElemento.firstChild);
+    }
+}
