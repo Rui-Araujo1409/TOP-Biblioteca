@@ -15,8 +15,23 @@ function adicionarLivroBiblioteca(título, autor, páginas, estado) {
     biblioteca.push(livro);
 }
 
-adicionarLivroBiblioteca("Livro1", "Autor1", 100, "lido");
-adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+/* adicionarLivroBiblioteca("Livro1", "Autor1", 100, "lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido"); */
+
+//protótipo para a fx de estado leitura
+
+Livro.prototype.mudarEstado = function () {
+    switch(this.estado) {
+        case("lido"):
+            this.estado = "não lido";
+            //console.log(this.estado);
+            break;
+        case("não lido"):
+            this.estado = "lido";
+            //console.log(this.estado);
+            break;
+    }
+}
 
 
 const blocoCartõesElemento = document.querySelector(".bloco-cartões");
@@ -27,6 +42,7 @@ let autorTexto = "";
 let páginasTexto = "";
 let estadoTexto = "";
 let apagarTexto = "Remover";
+let alterarEstado = "Mudar estado";
 
 //loop que constrói o HTML dos Livros
 //nota: o for...of não funciona, apenas o for...in com o item como index
@@ -39,6 +55,7 @@ const visualizaçãoBilbioteca = (lista) => {
         idTexto = lista[item].id;
         const cartãoLivro = document.createElement("div");
         let botãoApagarElemento = document.createElement("button");
+        let botãoAlterarEstado = document.createElement("button");
         cartãoLivro.classList.add("cartão-livro");
         blocoCartõesElemento.appendChild(cartãoLivro);
         let títuloConteúdo = document.createElement("div");
@@ -50,7 +67,9 @@ const visualizaçãoBilbioteca = (lista) => {
         páginasConteúdo.classList.add("js-páginas");
         estadoConteúdo.classList.add("js-estado");
         botãoApagarElemento.classList.add("js-botão-apagar");
+        botãoAlterarEstado.classList.add("js-alterar-estado");
         botãoApagarElemento.textContent = apagarTexto;
+        botãoAlterarEstado.textContent = alterarEstado;
         títuloConteúdo.textContent = títuloTexto;
         autorConteúdo.textContent = autorTexto;
         páginasConteúdo.textContent = `${páginasTexto} pp.`;
@@ -60,8 +79,10 @@ const visualizaçãoBilbioteca = (lista) => {
         cartãoLivro.appendChild(páginasConteúdo);
         cartãoLivro.appendChild(estadoConteúdo);
         cartãoLivro.appendChild(botãoApagarElemento);
+        cartãoLivro.appendChild(botãoAlterarEstado);
         cartãoLivro.setAttribute("data-id", `${idTexto}`);
         botãoApagarElemento.setAttribute("data-id", `${idTexto}`);
+        botãoAlterarEstado.setAttribute("data-id", `${idTexto}`);
     }
 }
 
@@ -112,17 +133,36 @@ const limparElementos = () => {
     }
 }
 
+
+
+//testar o protótipo com o botão "mudar estado"
+
+const botãoAlterarEstado = document.querySelector(".js-alterar-estado");
+
+/* botãoAlterarEstado.addEventListener("click", (evento) => {
+    let target = evento.target;
+    let idBotão = target.dataset.id;
+    biblioteca.forEach((item, index) => { if (item.id === idBotão) { item.mudarEstado() } });
+}); */
+
+
 //lógica para botão apagar livro: usar o event delegation? YEP!
 blocoCartõesElemento.addEventListener("click", (e) => {
     let target = e.target;
-    let idBotão = target.dataset.id;
-    console.log(idBotão);
-    biblioteca.forEach((item, index) => {if(item.id === idBotão) {biblioteca.splice(index, 1)}});
-    console.log(biblioteca);
-    limparElementos();
-    visualizaçãoBilbioteca(biblioteca);
-})
-
-//fx que vai apagar o livro da var biblioteca e da visualização
-
-
+    let idBotão;
+    switch (target.className) {
+        case "js-botão-apagar":
+            idBotão = target.dataset.id;
+            biblioteca.forEach((item, index) => { if (item.id === idBotão) { biblioteca.splice(index, 1) } });
+            limparElementos();
+            visualizaçãoBilbioteca(biblioteca);
+            break;
+        case "js-alterar-estado":
+            idBotão = target.dataset.id;
+            biblioteca.forEach((item, index) => { if (item.id === idBotão) { item.mudarEstado() } });
+            limparElementos();
+            visualizaçãoBilbioteca(biblioteca);
+            break;
+        }
+    }
+)

@@ -49,6 +49,19 @@ body {
     text-align: center;
 }
 
+.js-alterar-estado {
+    border: none;
+    padding: 5px;
+    background-color: purple;
+    color: white;
+    border-radius: 5px;
+}
+
+.js-alterar-estado:hover {
+    cursor: pointer;
+    background-color: rgb(51, 22, 22);
+}
+
 .js-botão-apagar, .botao-modal-fechar {
     border: none;
     padding: 5px;
