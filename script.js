@@ -15,8 +15,12 @@ function adicionarLivroBiblioteca(título, autor, páginas, estado) {
     biblioteca.push(livro);
 }
 
-/* adicionarLivroBiblioteca("Livro1", "Autor1", 100, "lido");
-adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido"); */
+adicionarLivroBiblioteca("Livro1", "Autor1", 100, "lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
 
 //protótipo para a fx de estado leitura
 

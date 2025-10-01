@@ -12,23 +12,25 @@ body {
     display: grid;
     justify-content: center;
     gap: 10px;
+    grid-template-columns: 1fr;
 }
 
 .apresentacao {
     text-align: center;
     font-size: 1.7em;
     font-weight: bold;
-    padding: 40px;
+    padding: 40px 40px 0 40px;
 }
 
 .bloco-cartões {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     padding: 20px;
     border: 1px solid blue;
     border-radius: 8px;
     justify-content: space-evenly;
+    margin: 30px
 }
 
 .cartão-livro {
