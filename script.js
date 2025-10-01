@@ -21,12 +21,12 @@ adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido"); */
 //protótipo para a fx de estado leitura
 
 Livro.prototype.mudarEstado = function () {
-    switch(this.estado) {
-        case("lido"):
+    switch (this.estado) {
+        case ("lido"):
             this.estado = "não lido";
             //console.log(this.estado);
             break;
-        case("não lido"):
+        case ("não lido"):
             this.estado = "lido";
             //console.log(this.estado);
             break;
@@ -35,7 +35,6 @@ Livro.prototype.mudarEstado = function () {
 
 
 const blocoCartõesElemento = document.querySelector(".bloco-cartões");
-
 
 let títuloTexto = "";
 let autorTexto = "";
@@ -87,6 +86,7 @@ const visualizaçãoBilbioteca = (lista) => {
 }
 
 visualizaçãoBilbioteca(biblioteca);
+
 const formulário = document.querySelector("dialog");
 const botãoAbrirFormulário = document.querySelector(".botao-abrir-modal");
 const botãoFecharFormulário = document.querySelector(".botao-modal-fechar");
@@ -126,16 +126,11 @@ botãoGuardarLivro.addEventListener("click", (e) => {
 })
 
 //criar fx que limpa os elementos de visualização dos livros
-
 const limparElementos = () => {
     while (blocoCartõesElemento.firstChild) {
         blocoCartõesElemento.removeChild(blocoCartõesElemento.firstChild);
     }
 }
-
-
-
-//testar o protótipo com o botão "mudar estado"
 
 const botãoAlterarEstado = document.querySelector(".js-alterar-estado");
 
@@ -146,11 +141,12 @@ const botãoAlterarEstado = document.querySelector(".js-alterar-estado");
 }); */
 
 
-//lógica para botão apagar livro: usar o event delegation? YEP!
+//lógica para botão apagar livro e alterar estado: usar o event delegation? YEP!
 blocoCartõesElemento.addEventListener("click", (e) => {
     let target = e.target;
     let idBotão;
     switch (target.className) {
+        //para apagar livro
         case "js-botão-apagar":
             idBotão = target.dataset.id;
             biblioteca.forEach((item, index) => { if (item.id === idBotão) { biblioteca.splice(index, 1) } });
@@ -158,11 +154,12 @@ blocoCartõesElemento.addEventListener("click", (e) => {
             visualizaçãoBilbioteca(biblioteca);
             break;
         case "js-alterar-estado":
+            //para alterar estado leitura
             idBotão = target.dataset.id;
             biblioteca.forEach((item, index) => { if (item.id === idBotão) { item.mudarEstado() } });
             limparElementos();
             visualizaçãoBilbioteca(biblioteca);
             break;
-        }
     }
+}
 )
