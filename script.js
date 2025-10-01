@@ -15,9 +15,12 @@ function adicionarLivroBiblioteca(título, autor, páginas, estado) {
     biblioteca.push(livro);
 }
 
+adicionarLivroBiblioteca("Livro1", "Autor1", 100, "lido");
+adicionarLivroBiblioteca("Livro2", "Autor2", 200, "não lido");
+
 
 const blocoCartõesElemento = document.querySelector(".bloco-cartões");
-const cartãoLivro = document.createElement("div");
+
 
 let títuloTexto = "";
 let autorTexto = "";
@@ -34,6 +37,7 @@ const visualizaçãoBilbioteca = (lista) => {
         páginasTexto = lista[item].páginas;
         estadoTexto = lista[item].estado;
         idTexto = lista[item].id;
+        const cartãoLivro = document.createElement("div");
         let botãoApagarElemento = document.createElement("button");
         cartãoLivro.classList.add("cartão-livro");
         blocoCartõesElemento.appendChild(cartãoLivro);
@@ -57,10 +61,11 @@ const visualizaçãoBilbioteca = (lista) => {
         cartãoLivro.appendChild(estadoConteúdo);
         cartãoLivro.appendChild(botãoApagarElemento);
         cartãoLivro.setAttribute("data-id", `${idTexto}`);
+        botãoApagarElemento.setAttribute("data-id", `${idTexto}`);
     }
 }
 
-
+visualizaçãoBilbioteca(biblioteca);
 
 const formulário = document.querySelector("dialog");
 const botãoAbrirFormulário = document.querySelector(".botao-abrir-modal");
@@ -93,17 +98,11 @@ botãoGuardarLivro.addEventListener("click", (e) => {
     adicionarLivroBiblioteca(título, autor, páginas, estado);
     formulário.close();
     //se houver elementos de livros, executar fx que limpa os elementos
-   // limparElementos();
+    limparElementos();
     visualizaçãoBilbioteca(biblioteca);
     títuloFormulário.value = "";
     autorFormulário.value = "";
     páginasFormulário.value = "";
-})
-
-const teste = document.querySelector(".teste");
-
-teste.addEventListener("click", () => {
-    limparElementos();
 })
 
 //criar fx que limpa os elementos de visualização dos livros
@@ -113,3 +112,13 @@ const limparElementos = () => {
         blocoCartõesElemento.removeChild(blocoCartõesElemento.firstChild);
     }
 }
+
+//lógica para botão apagar livro: usar o event delegation? YEP!
+blocoCartõesElemento.addEventListener("click", (e) => {
+    let target = e.target;
+    let id = target.dataset.id;
+})
+
+//fx que vai apagar o livro da var biblioteca e da visualização
+
+
