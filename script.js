@@ -66,7 +66,6 @@ const visualizaçãoBilbioteca = (lista) => {
 }
 
 visualizaçãoBilbioteca(biblioteca);
-
 const formulário = document.querySelector("dialog");
 const botãoAbrirFormulário = document.querySelector(".botao-abrir-modal");
 const botãoFecharFormulário = document.querySelector(".botao-modal-fechar");
@@ -116,7 +115,12 @@ const limparElementos = () => {
 //lógica para botão apagar livro: usar o event delegation? YEP!
 blocoCartõesElemento.addEventListener("click", (e) => {
     let target = e.target;
-    let id = target.dataset.id;
+    let idBotão = target.dataset.id;
+    console.log(idBotão);
+    biblioteca.forEach((item, index) => {if(item.id === idBotão) {biblioteca.splice(index, 1)}});
+    console.log(biblioteca);
+    limparElementos();
+    visualizaçãoBilbioteca(biblioteca);
 })
 
 //fx que vai apagar o livro da var biblioteca e da visualização
