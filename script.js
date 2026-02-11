@@ -116,15 +116,30 @@ botãoFecharFormulário.addEventListener("click", () => {
 //validação
 
 formulário2.addEventListener("submit", (e) => {
-    if(!títuloFormulário.validity.valid || !autorFormulário.validity.valid) {
+    if (!títuloFormulário.validity.valid || !autorFormulário.validity.valid) {
         mostrarErros();
         e.preventDefault();
+    } else {
+
+        let título = títuloFormulário.value;
+        let autor = autorFormulário.value;
+        let páginas = parseInt(páginasFormulário.value);
+        let estado;
+        estadoLidoFormulário.checked ? estado = estadoLidoFormulário.value : estado = estadoNãoLidoFormulário.value;
+        adicionarLivroBiblioteca(título, autor, páginas, estado);
+        formulário.close();
+        //se houver elementos de livros, executar fx que limpa os elementos
+        limparElementos();
+        visualizaçãoBilbioteca(biblioteca);
+        títuloFormulário.value = "";
+        autorFormulário.value = "";
+        páginasFormulário.value = "";
     }
 })
 
 
-botãoGuardarLivro.addEventListener("click", () => {
-    
+/* botãoGuardarLivro.addEventListener("click", () => {
+
     let título = títuloFormulário.value;
     let autor = autorFormulário.value;
     let páginas = parseInt(páginasFormulário.value);
@@ -138,7 +153,7 @@ botãoGuardarLivro.addEventListener("click", () => {
     títuloFormulário.value = "";
     autorFormulário.value = "";
     páginasFormulário.value = "";
-})
+}) */
 
 //criar fx que limpa os elementos de visualização dos livros
 const limparElementos = () => {
@@ -182,9 +197,9 @@ blocoCartõesElemento.addEventListener("click", (e) => {
 //fx para os erros dos inputs com a API do Constraint Validation
 
 const mostrarErros = () => {
-    if(títuloFormulário.validity.valueMissing) {
+    if (títuloFormulário.validity.valueMissing) {
         alert("Tem de inserir um título do livro");
-    } else if(autorFormulário.validity.valueMissing) {
+    } else if (autorFormulário.validity.valueMissing) {
         alert("Tem de inserir um título");
     }
 }
