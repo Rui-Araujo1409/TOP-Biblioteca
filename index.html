@@ -20,14 +20,14 @@
         </div>
         <div class="adicionar-livro">
             <dialog>
-                <form action="dialog" class="formulario-adicionar-livro">
+                <form action="dialog" class="formulario-adicionar-livro" novalidate>
                     <div class="formulario-input">
                         <label for="título">Título</label>
-                        <input type="text" name="título" id="título-livro">
+                        <input type="text" name="título" required id="título-livro" required>
                     </div>
                     <div class="formulario-input">
                         <label for="autor">Autor</label>
-                        <input type="text" name="autor" id="autor-livro">
+                        <input type="text" name="autor" id="autor-livro" required>
                     </div>
                     <div class="formulario-input">
                         <label for="páginas">Páginas</label>

@@ -92,6 +92,7 @@ const visualizaçãoBilbioteca = (lista) => {
 visualizaçãoBilbioteca(biblioteca);
 
 const formulário = document.querySelector("dialog");
+const formulário2 = document.querySelector("form");
 const botãoAbrirFormulário = document.querySelector(".botao-abrir-modal");
 const botãoFecharFormulário = document.querySelector(".botao-modal-fechar");
 const títuloFormulário = document.querySelector("#título-livro");
@@ -112,8 +113,18 @@ botãoFecharFormulário.addEventListener("click", () => {
     páginasFormulário.value = "";
 })
 
-botãoGuardarLivro.addEventListener("click", (e) => {
-    e.preventDefault();
+//validação
+
+formulário2.addEventListener("submit", (e) => {
+    if(!títuloFormulário.validity.valid || !autorFormulário.validity.valid) {
+        mostrarErros();
+        e.preventDefault();
+    }
+})
+
+
+botãoGuardarLivro.addEventListener("click", () => {
+    
     let título = títuloFormulário.value;
     let autor = autorFormulário.value;
     let páginas = parseInt(páginasFormulário.value);
@@ -167,3 +178,13 @@ blocoCartõesElemento.addEventListener("click", (e) => {
     }
 }
 )
+
+//fx para os erros dos inputs com a API do Constraint Validation
+
+const mostrarErros = () => {
+    if(títuloFormulário.validity.valueMissing) {
+        alert("Tem de inserir um título do livro");
+    } else if(autorFormulário.validity.valueMissing) {
+        alert("Tem de inserir um título");
+    }
+}
